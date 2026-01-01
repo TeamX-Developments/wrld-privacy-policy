@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <title>WRLD Creator • Privacy Policy</title>
+  <style>
+    :root{
+      --bg0:#070a12;
+      --bg1:#0b1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.88);
+      --muted: rgba(255,255,255,.64);
+      --muted2: rgba(255,255,255,.50);
+      --accent: #7c5cff;
+      --accent2:#2de2e6;
+      --warn:#ffd166;
+      --good:#06d6a0;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1040px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    /* Light mode */
+    [data-theme="light"]{
+      --bg0:#f5f7ff;
+      --bg1:#eef1ff;
+      --card: rgba(0,0,0,.05);
+      --card2: rgba(0,0,0,.06);
+      --stroke: rgba(0,0,0,.10);
+      --text: rgba(0,0,0,.86);
+      --muted: rgba(0,0,0,.62);
+      --muted2: rgba(0,0,0,.46);
+      --shadow: 0 18px 60px rgba(0,0,0,.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,.20), transparent 60%),
+                  radial-gradient(900px 700px at 80% 20%, rgba(45,226,230,.18), transparent 65%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    /* Ambient animated blobs */
+    .blobs{
+      position:fixed;
+      inset:-20vh -20vw;
+      pointer-events:none;
+      z-index:-1;
+      filter: blur(42px) saturate(120%);
+      opacity:.9;
+    }
+    .blob{
+      position:absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.65), rgba(124,92,255,0));
+      animation: float 18s ease-in-out infinite;
+      mix-blend-mode: screen;
+    }
+    .blob.b2{
+      width: 640px; height:640px;
+      left: 58%;
+      top: 10%;
+      background: radial-gradient(circle at 30% 30%, rgba(45,226,230,.55), rgba(45,226,230,0));
+      animation-duration: 22s;
+      animation-delay:-6s;
+    }
+    .blob.b3{
+      width: 560px; height:560px;
+      left: 10%;
+      top: 55%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,209,102,.35), rgba(255,209,102,0));
+      animation-duration: 26s;
+      animation-delay:-11s;
+      mix-blend-mode: overlay;
+    }
+    @keyframes float{
+      0%,100%{transform: translate3d(0,0,0) scale(1)}
+      50%{transform: translate3d(60px,-40px,0) scale(1.08)}
+    }
+
+    /* Layout */
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 18px 80px;
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.05));
+      border-bottom: 1px solid var(--stroke);
+    }
+    [data-theme="light"] header{
+      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.45));
+    }
+    .bar{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 240px;
+    }
+    .logo{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.32), transparent 55%),
+        linear-gradient(135deg, rgba(124,92,255,1), rgba(45,226,230,1));
+      box-shadow: 0 10px 30px rgba(124,92,255,.22);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute;
+      inset:-50%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: rotate(25deg);
+      animation: shine 3.8s ease-in-out infinite;
+    }
+    @keyframes shine{
+      0%{transform: translateX(-30%) rotate(25deg)}
+      55%{transform: translateX(55%) rotate(25deg)}
+      100%{transform: translateX(55%) rotate(25deg)}
+    }
+    .brand h1{
+      font-size: 14px;
+      line-height:1.1;
+      margin:0;
+      letter-spacing:.3px;
+    }
+    .brand small{
+      display:block;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top:2px;
+    }
+
+    .controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .search{
+      position:relative;
+      width: min(420px, 55vw);
+    }
+    .search input{
+      width:100%;
+      padding: 11px 40px 11px 12px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      outline:none;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    [data-theme="light"] .search input{ background: rgba(255,255,255,.75); }
+    .search input:focus{
+      border-color: rgba(124,92,255,.55);
+      background: rgba(255,255,255,.08);
+      transform: translateY(-1px);
+    }
+    .search .icon{
+      position:absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity:.65;
+      font-size: 14px;
+      user-select:none;
+    }
+
+    .btn{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      cursor:pointer;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+      font-weight: 600;
+      letter-spacing:.2px;
+    }
+    [data-theme="light"] .btn{ background: rgba(255,255,255,.7); }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(124,92,255,.45); }
+    .btn:active{ transform: translateY(0px); opacity:.9; }
+
+    /* Hero */
+    .hero{
+      padding: 28px 0 10px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      .search{ width: 100%; }
+    }
+
+    .card{
+      background: var(--card);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left{
+      padding: 22px 22px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-weight:700;
+      letter-spacing:.3px;
+      font-size: 12px;
+    }
+    .pill .dot{
+      width: 8px; height: 8px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.15);
+    }
+    .hero-left h2{
+      margin: 14px 0 10px;
+      font-size: clamp(26px, 3.5vw, 40px);
+      line-height:1.06;
+      letter-spacing: -.5px;
+    }
+    .hero-left p{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+    .meta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      color: var(--muted2);
+      font-weight:600;
+      font-size: 13px;
+    }
+    .meta span{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+    }
+
+    .hero-right{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      justify-content:space-between;
+    }
+    .toc-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .toc-title h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .toc{
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .toc a{
+      text-decoration:none;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      transition: transform .15s ease, border-color .2s ease, background .2s ease;
+      font-weight: 650;
+      letter-spacing:.2px;
+    }
+    .toc a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(45,226,230,.45);
+      background: rgba(255,255,255,.06);
+    }
+    .toc a.active{
+      border-color: rgba(124,92,255,.55);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+    }
+
+    /* Content sections */
+    main{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    section.policy{
+      padding: 18px 18px 14px;
+      border-radius: var(--radius2);
+      background: var(--card);
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform .6s ease, opacity .6s ease;
+    }
+    section.policy.reveal{
+      transform: translateY(0px);
+      opacity: 1;
+    }
+
+    .policy h3{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .policy h3 .tag{
+      font-size: 12px;
+      color: var(--muted);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .policy p, .policy li{
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 14.5px;
+    }
+    .policy ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+    .policy .note{
+      margin-top: 12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,209,102,.25);
+      background: rgba(255,209,102,.08);
+      color: rgba(255,255,255,.78);
+    }
+    [data-theme="light"] .policy .note{
+      color: rgba(0,0,0,.75);
+      background: rgba(255,209,102,.22);
+    }
+
+    /* Accordion for long bits */
+    details{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin-top: 10px;
+    }
+    details summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:800;
+      color: var(--text);
+      letter-spacing:.2px;
+      user-select:none;
+    }
+    details summary::-webkit-details-marker{display:none}
+    details summary .chev{
+      opacity:.7;
+      transition: transform .2s ease;
+    }
+    details[open] summary .chev{ transform: rotate(180deg); }
+    details .content{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top:1px solid var(--stroke);
+      color: var(--muted);
+    }
+
+    /* Short policy block */
+    .short{
+      background: linear-gradient(135deg, rgba(124,92,255,.14), rgba(45,226,230,.10));
+      border:1px solid rgba(124,92,255,.25);
+    }
+    .codebox{
+      font-family: var(--mono);
+      font-size: 12.8px;
+      color: rgba(255,255,255,.82);
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 12px;
+      overflow:auto;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+    [data-theme="light"] .codebox{
+      background: rgba(255,255,255,.72);
+      color: rgba(0,0,0,.75);
+    }
+
+    footer{
+      margin-top: 18px;
+      text-align:center;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    /* Search highlight */
+    mark{
+      background: rgba(45,226,230,.25);
+      color: inherit;
+      padding: 0 2px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blobs" aria-hidden="true">
+    <div class="blob b1" style="left: -6%; top:-10%;"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <header>
+    <div class="bar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>WRLD Creator <small>Privacy Policy</small></h1>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="search" role="search">
+          <input id="search" type="search" placeholder="Search policy (e.g., logs, retention, Discord)..." autocomplete="off" />
+          <div class="icon">⌘K</div>
+        </div>
+        <button class="btn" id="toggleTheme" type="button" aria-label="Toggle theme">
+          <span aria-hidden="true">☀︎</span><span>Theme</span>
+        </button>
+        <button class="btn" id="copyShort" type="button">
+          <span aria-hidden="true">⧉</span><span>Copy short</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-left card">
+        <div class="pill"><span class="dot"></span> Effective Date: January 1, 2026</div>
+        <h2>Privacy Policy for WRLD Creator</h2>
+        <p>
+          This page explains what WRLD Creator collects, why it collects it, how long it’s kept,
+          and how it’s shared. The goal is simple: collect the minimum needed to run the service,
+          and avoid creepy stuff.
+        </p>
+        <div class="meta">
+          <span>Scope: API + Discord integrations</span>
+          <span>Default: minimal processing</span>
+          <span>No selling data</span>
+        </div>
+      </div>
+
+      <aside class="hero-right card">
+        <div class="toc-title">
+          <h3>On this page</h3>
+          <span class="pill" style="padding:6px 10px;"><span class="dot"></span><span id="matchCount">0 matches</span></span>
+        </div>
+        <nav class="toc" id="toc" aria-label="Table of contents"></nav>
+      </aside>
+    </div>
+
+    <main id="content">
+
+      <section class="policy short" id="short-version" data-title="Short version">
+        <h3>Short version <span class="tag">/privacy</span></h3>
+        <p>Use this anywhere you need a quick summary (like a Discord command).</p>
+        <div class="codebox" id="shortText">WRLD Creator Privacy: We store only what we need to run the service (IDs, settings, and basic logs). We don’t sell data. Content is only processed/stored when required by enabled features (commands, tickets, moderation) or when you submit content to the API.</div>
+      </section>
+
+      <section class="policy" id="what-we-collect" data-title="What we collect">
+        <h3>1) Information We Collect <span class="tag">collection</span></h3>
+
+        <details open>
+          <summary>
+            A. Discord Platform Data (when you connect WRLD Creator to Discord)
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="content">
+            <ul>
+              <li><strong>User IDs, Server (Guild) IDs, Channel IDs, Message IDs</strong> (Discord “snowflakes”)</li>
+              <li><strong>Usernames/display names</strong> (as provided by Discord)</li>
+              <li><strong>Role IDs and permission-related info</strong> (if required by enabled features)</li>
+              <li><strong>Interaction data</strong> (slash commands, button clicks, menus)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            B. API Request Data
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="content">
+            <ul>
+              <li>Request metadata (timestamps, endpoint called, status codes)</li>
+              <li>Client identifiers you provide (e.g., app ID, workspace/guild ID)</li>
+              <li>Payload data you submit (only to perform the requested function)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            C. Message Content (Only When Required)
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="content">
+            <p>
+              WRLD Creator does <strong>not</strong> read or store all Discord messages by default.
+              Message content is processed only when:
+            </p>
+            <ul>
+              <li>A command/feature you enable requires it (e.g., moderation, ticket support, message generation), or</li>
+              <li>You explicitly submit content to the API.</li>
+            </ul>
+            <div class="note">
+              Stored content (if any) depends on what features you enable. Default is intended to be minimal.
+            </div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            D. Logs & Diagnostics
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="content">
+            <ul>
+              <li>Error logs and crash reports</li>
+              <li>Basic usage metrics (rate limits, feature usage counts)</li>
+              <li>Security logs (failed auth attempts, abuse detection signals)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            E. Website/Dashboard Data (Optional)
+            <span class="chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="content">
+            <ul>
+              <li>Session/auth tokens</li>
+              <li>Settings and configuration you save</li>
+              <li>Basic analytics (if enabled)</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section class="policy" id="how-we-use" data-title="How we use info">
+        <h3>2) How We Use Information <span class="tag">usage</span></h3>
+        <ul>
+          <li>Provide and operate WRLD Creator features</li>
+          <li>Authenticate requests and prevent abuse</li>
+          <li>Store configuration and preferences</li>
+          <li>Debug issues and improve performance and reliability</li>
+          <li>Comply with legal obligations when required</li>
+        </ul>
+      </section>
+
+      <section class="policy" id="what-we-dont-do" data-title="What we don’t do">
+        <h3>3) What We Don’t Do <span class="tag">limits</span></h3>
+        <ul>
+          <li>We <strong>do not sell</strong> your personal data.</li>
+          <li>We <strong>do not</strong> use Discord data for advertising.</li>
+          <li>We <strong>do not</strong> collect Discord passwords (Discord handles authentication).</li>
+        </ul>
+      </section>
+
+      <section class="policy" id="sharing" data-title="How we share info">
+        <h3>4) How We Share Information <span class="tag">sharing</span></h3>
+        <p>We share data only when necessary:</p>
+        <ul>
+          <li>With Discord (when you use Discord-based features)</li>
+          <li>With service providers (hosting, database, monitoring) strictly to operate WRLD Creator</li>
+          <li>For legal reasons (lawful requests, court orders)</li>
+          <li>To protect safety/security (fraud, abuse, security incidents)</li>
+        </ul>
+      </section>
+
+      <section class="policy" id="retention" data-title="Retention">
+        <h3>5) Data Storage & Retention <span class="tag">retention</span></h3>
+        <p>We keep data only as long as needed:</p>
+        <ul>
+          <li><strong>Configuration data (server/app settings):</strong> until you delete it or disconnect the Service</li>
+          <li><strong>Logs:</strong> retained for a limited time based on operational needs</li>
+          <li><strong>Tickets/moderation records (if enabled):</strong> retained as configured by admins or feature requirements</li>
+        </ul>
+        <div class="note">
+          When WRLD Creator is disconnected or removed, related stored data is intended to be deleted or anonymized within a reasonable period,
+          unless required for security or legal compliance.
+        </div>
+      </section>
+
+      <section class="policy" id="security" data-title="Security">
+        <h3>6) Security <span class="tag">security</span></h3>
+        <ul>
+          <li>Access controls for systems and data</li>
+          <li>Encryption in transit (HTTPS)</li>
+          <li>Secure storage of tokens/secrets (environment variables, restricted access)</li>
+        </ul>
+        <p>No system is perfect. If something goes wrong, we investigate and respond quickly.</p>
+      </section>
+
+      <section class="policy" id="choices" data-title="Choices & rights">
+        <h3>7) Your Choices & Rights <span class="tag">controls</span></h3>
+        <p>
+          You may request access to or deletion of data associated with you or your server/app (where applicable).
+          Requests can be handled through whatever official channels WRLD Creator provides (for example, a dashboard or Discord command), if available.
+        </p>
+        <p>We may verify identity/ownership to prevent unauthorized deletion requests.</p>
+      </section>
+
+      <section class="policy" id="children" data-title="Children’s privacy">
+        <h3>8) Children’s Privacy <span class="tag">age</span></h3>
+        <p>
+          WRLD Creator is not intended for children under 13 (or the minimum required age in your region).
+          If you believe a child’s data has been provided, contact the platform you used to access the Service.
+        </p>
+      </section>
+
+      <section class="policy" id="international" data-title="International users">
+        <h3>9) International Users <span class="tag">global</span></h3>
+        <p>
+          If you access WRLD Creator from outside the country where our servers are located, your data may be processed in other countries where our providers operate.
+        </p>
+      </section>
+
+      <section class="policy" id="changes" data-title="Changes">
+        <h3>10) Changes to This Policy <span class="tag">updates</span></h3>
+        <p>
+          We may update this policy. Material changes will be posted via website/dashboard notice (if applicable) and/or a Discord announcement (if applicable).
+        </p>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> WRLD Creator • Privacy Policy
+    </footer>
+  </div>
+
+  <script>
+    // Theme: remember preference
+    const root = document.documentElement;
+    const btnTheme = document.getElementById('toggleTheme');
+    const savedTheme = localStorage.getItem('wrld_theme');
+    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+
+    btnTheme.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('wrld_theme', next);
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Build TOC
+    const toc = document.getElementById('toc');
+    const sections = [...document.querySelectorAll('section.policy')];
+
+    sections.forEach(sec => {
+      const id = sec.id;
+      const title = sec.getAttribute('data-title') || sec.querySelector('h3')?.innerText || id;
+      const a = document.createElement('a');
+      a.href = `#${id}`;
+      a.textContent = title;
+      a.dataset.target = id;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+        history.replaceState(null, '', `#${id}`);
+      });
+      toc.appendChild(a);
+    });
+
+    // Reveal on scroll + active TOC link
+    const tocLinks = [...toc.querySelectorAll('a')];
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('reveal');
+      });
+    }, { threshold: 0.12 });
+
+    sections.forEach(s => io.observe(s));
+
+    const io2 = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      tocLinks.forEach(l => l.classList.toggle('active', l.dataset.target === visible.target.id));
+    }, { rootMargin: "-30% 0px -60% 0px", threshold: [0.01, 0.1, 0.2, 0.4, 0.6] });
+
+    sections.forEach(s => io2.observe(s));
+
+    // Search + highlight
+    const search = document.getElementById('search');
+    const matchCount = document.getElementById('matchCount');
+
+    const stripMarks = (el) => {
+      el.querySelectorAll('mark').forEach(m => {
+        const t = document.createTextNode(m.textContent);
+        m.replaceWith(t);
+      });
+    };
+
+    const highlight = (container, query) => {
+      if (!query) return 0;
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+        acceptNode(node){
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          const parentTag = node.parentElement?.tagName?.toLowerCase();
+          if (['script','style','mark'].includes(parentTag)) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+
+      let count = 0;
+      const q = query.toLowerCase();
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach(node => {
+        const text = node.nodeValue;
+        const idx = text.toLowerCase().indexOf(q);
+        if (idx === -1) return;
+
+        // Only highlight the first occurrence per text node to keep it fast & readable
+        const before = text.slice(0, idx);
+        const match = text.slice(idx, idx + query.length);
+        const after  = text.slice(idx + query.length);
+
+        const frag = document.createDocumentFragment();
+        if (before) frag.appendChild(document.createTextNode(before));
+
+        const mark = document.createElement('mark');
+        mark.textContent = match;
+        frag.appendChild(mark);
+
+        if (after) frag.appendChild(document.createTextNode(after));
+
+        node.parentNode.replaceChild(frag, node);
+        count++;
+      });
+
+      return count;
+    };
+
+    const runSearch = () => {
+      const q = search.value.trim();
+      // clear previous marks
+      sections.forEach(sec => stripMarks(sec));
+      if (!q){
+        matchCount.textContent = "0 matches";
+        sections.forEach(sec => sec.style.display = "");
+        return;
+      }
+
+      let total = 0;
+      sections.forEach(sec => {
+        const c = highlight(sec, q);
+        total += c;
+        // hide sections with no matches to feel "smart"
+        sec.style.display = c ? "" : "none";
+      });
+
+      matchCount.textContent = `${total} match${total === 1 ? "" : "es"}`;
+    };
+
+    search.addEventListener('input', runSearch);
+
+    // Keyboard shortcut: Cmd/Ctrl+K to focus search
+    window.addEventListener('keydown', (e) => {
+      const isK = e.key.toLowerCase() === 'k';
+      if ((e.metaKey || e.ctrlKey) && isK){
+        e.preventDefault();
+        search.focus();
+      }
+      if (e.key === 'Escape'){
+        if (document.activeElement === search){
+          search.value = '';
+          runSearch();
+          search.blur();
+        }
+      }
+    });
+
+    // Copy short policy
+    document.getElementById('copyShort').addEventListener('click', async () => {
+      const text = document.getElementById('shortText').textContent.trim();
+      try{
+        await navigator.clipboard.writeText(text);
+        const btn = document.getElementById('copyShort');
+        const old = btn.innerHTML;
+        btn.innerHTML = '<span aria-hidden="true">✓</span><span>Copied</span>';
+        setTimeout(() => btn.innerHTML = old, 1100);
+      }catch{
+        alert("Clipboard blocked by the browser. Select and copy manually.");
+      }
+    });
+  </script>
+</body>
+</html>
